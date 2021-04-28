@@ -46,11 +46,15 @@ class Main(object):
         self.dir_create()
         print('canvas内の画像を取得する')
 
-        canvas_first = self.driver.find_element_by_css_selector('#book > div.page.first.right > div.page_unit.page_image > canvas')
-        canvas_second = self.driver.find_element_by_css_selector('#book > div.page.second.left > div.page_unit.page_image > canvas')
+        canvas_first = self.driver.find_element_by_css_selector(
+            '#book > div.page.first.right > div.page_unit.page_image > canvas')
+        canvas_second = self.driver.find_element_by_css_selector(
+            '#book > div.page.second.left > div.page_unit.page_image > canvas')
 
-        base64_first = self.driver.execute_script("return arguments[0].toDataURL('image/png').substring(21);", canvas_first)
-        base64_second = self.driver.execute_script("return arguments[0].toDataURL('image/png').substring(21);", canvas_second)
+        base64_first = self.driver.execute_script("return arguments[0].toDataURL('image/png').substring(21);",
+                                                  canvas_first)
+        base64_second = self.driver.execute_script("return arguments[0].toDataURL('image/png').substring(21);",
+                                                   canvas_second)
         first_png = base64.b64decode(base64_first)
         second_png = base64.b64decode(base64_second)
 

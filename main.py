@@ -1,6 +1,7 @@
 from model import lec1, lec2
 import time
 
+
 def lec1_run():
     base_url = 'https://tanihoshii.ichiya-boshi.net/'
     url = 'https://tanihoshii.ichiya-boshi.net/1.html'
@@ -28,5 +29,5 @@ def lec2_run():
     Soup.canvas_get()
 
 
-# lec1_run()
+lec1_run()
 lec2_run()
