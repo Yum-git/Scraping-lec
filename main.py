@@ -20,12 +20,18 @@ def lec1_run():
 def lec2_run():
     url = 'https://vw.mangaz.com/virgo/view/101/i:0'
 
+    # クラス生成
     Soup = lec2.Main(url)
+    # webdriver初期設定
     Soup.driver_init()
+    # 指定したurlへ移動+処理
     Soup.driver_wait()
+    # canvasタグ内の画像を取得
     Soup.canvas_get()
+    # 次のページに移動
     Soup.nextpage_click()
     time.sleep(1)
+    # canvasタグ内の画像を取得
     Soup.canvas_get()
 
 
