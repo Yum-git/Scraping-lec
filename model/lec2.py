@@ -58,12 +58,12 @@ class Main(object):
         first_png = base64.b64decode(base64_first)
         second_png = base64.b64decode(base64_second)
 
-        with open("img/canvas_{}.png".format(self.idx), 'wb') as f:
+        with open("img/{}/{}.png".format(self.url_title, self.idx), 'wb') as f:
             f.write(first_png)
-        with open("img/canvas_{}.png".format(self.idx + 1), 'wb') as f:
+        with open("img/{}/{}.png".format(self.url_title, self.idx + 1), 'wb') as f:
             f.write(second_png)
 
-    def nextpage_click(self):
+    def next_page_click(self):
         print('次のページに移動する')
         next_page = self.driver.find_element_by_css_selector('.flip.flip-left')
         next_page.click()
@@ -71,6 +71,9 @@ class Main(object):
 
     # フォルダを作成する
     def dir_create(self):
+        self.url_title = self.driver.title.split("-")[0].strip()
         # フォルダが存在しない場合のみフォルダを生成する条件文
         if os.path.exists('img') is False:
             os.mkdir('img')
+        if os.path.exists('img/' + self.url_title) is False:
+            os.mkdir('img/' + self.url_title)
