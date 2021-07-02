@@ -46,27 +46,20 @@ class Main(object):
         print('canvas内の画像を取得する')
 
         canvas_first = self.driver.find_element_by_css_selector(
-            '#book > div.page.first.right > div.page_unit.page_image > canvas')
-        canvas_second = self.driver.find_element_by_css_selector(
-            '#book > div.page.second.left > div.page_unit.page_image > canvas')
+            '#output')
 
         base64_first = self.driver.execute_script("return arguments[0].toDataURL('image/png').substring(21);",
                                                   canvas_first)
-        base64_second = self.driver.execute_script("return arguments[0].toDataURL('image/png').substring(21);",
-                                                   canvas_second)
         first_png = base64.b64decode(base64_first)
-        second_png = base64.b64decode(base64_second)
 
         with open("img/{}/{}.png".format(self.url_title, self.idx), 'wb') as f:
             f.write(first_png)
-        with open("img/{}/{}.png".format(self.url_title, self.idx + 1), 'wb') as f:
-            f.write(second_png)
 
     def next_page_click(self):
         print('次のページに移動する')
-        next_page = self.driver.find_element_by_css_selector('.flip.flip-left')
+        next_page = self.driver.find_element_by_css_selector('#output')
         next_page.click()
-        self.idx += 2
+        self.idx += 1
 
     # フォルダを作成する
     def dir_create(self):
